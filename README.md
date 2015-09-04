@@ -1,4 +1,4 @@
-# udacity-swiss-tournament
+# udacity-tournament
 
 This project implements a Swiss tournament in Python and PostgreSQL. Three of the
 extra credit features are implemented:
