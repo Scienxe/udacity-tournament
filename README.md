@@ -13,11 +13,9 @@ The project consists of three files:
 
 ## how-to
 
-Python and PostgreSQL are required. Before the first tournament, create the necessary database tables by importing tournament.sql at a PostgreSQL prompt:
+Python and PostgreSQL are required. Before a tournament, create a clean database and tables by importing tournament.sql at a PostgreSQL prompt:
 
 		> psql
-		=> create database tournament
-		=> \c tournament
 		=> \i tournament.sql
 
 Then test the tournament by running
@@ -25,3 +23,11 @@ Then test the tournament by running
 		> python tournament_test.py
 
 at a system command prompt. Tests 9 and 10 probe extra credit features.
+
+### update
+
+This resubmission incorporates two changes:
+* Remove an unnecessary column from the matches table
+* Implement a cursor generator to handle db open/close tasks.
+
+Thanks to the initial reviewer for these suggestions.
