@@ -96,7 +96,7 @@ def reportMatch(winner, loser):
 
         c.execute("""UPDATE players SET (wins, matches, omw) = (wins + 1, matches + 1, %s) 
             WHERE id = %s;""", (op_wins, winner))
-        c.execute("INSERT INTO matches (p1, p2, winner) VALUES (%s, %s, %s);", (winner, loser, winner))
+        c.execute("INSERT INTO matches (winner, loser) VALUES (%s, %s);", (winner, loser))
         c.execute("UPDATE players SET matches = matches + 1 WHERE id = %s;", (loser,))
     else:
         # Don't increment matches for a bye
@@ -145,7 +145,7 @@ def swissPairings():
         p2 = standings[i+1][0]
 
         c.execute("""SELECT * FROM matches 
-            WHERE (p1 = %s AND p2 = %s) OR (p1 = %s AND p2 = %s)""", (p1, p2, p2, p1))
+            WHERE (winner = %s AND loser = %s) OR (winner = %s AND loser = %s)""", (p1, p2, p2, p1))
         rematch = c.fetchall()
 
         # If this would be a rematch, switch p2 with the next player in line.
